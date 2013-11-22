@@ -1,7 +1,7 @@
 
 //variavéis para controle dos elementos da tela.
 
-var peca;
+var peca ;
 
 var msg = document.createElement( "p" );
 
@@ -11,7 +11,8 @@ function joga ( casa ) {
 
     if ( jogadaLegal ( casa ) ) {
         
-        peca = peca == null || peca.nome == "x" ? pecaFactory( "o" ) : pecaFactory( "x" );
+        trocaPeca();
+
         casa.appendChild( peca );
 
         if ( vitoria ( casa ) ) {
@@ -24,13 +25,13 @@ function joga ( casa ) {
 		
 }
 
-var trocaPeca = function ( peca ) { peca == null || peca.nome == "x" ? pecaFactory( "o" ) : pecaFactory( "x" ); }
+var trocaPeca = function () {peca == null || peca.nome == "o" ? peca = pecaFactory( "x" ) : peca = pecaFactory( "o" ); return peca; }
 
 var jogadaLegal = function ( casa ) { var legal; casa.innerHTML.trim() == ""? legal = true : legal = false; return legal }
 
 var pecaFactory =  function ( peca ) {
 
-var imgPeca = document.createElement( "img" ); 
+    var imgPeca = document.createElement( "img" ); 
    
     if ( peca == "x" ) {
         imgPeca.src = "img/x.jpg"; 
