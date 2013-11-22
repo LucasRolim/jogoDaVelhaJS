@@ -1,50 +1,36 @@
 
 //variavéis para controle dos elementos da tela.
 
-
-//peça é um elemento de imagem
 var peca;
 
-//cada 
-var casa_11 = document.getElementById( "casa_11" );
-var casa_12 = document.getElementById( "casa_12" );
-var casa_13 = document.getElementById( "casa_13" );
-var casa_21 = document.getElementById( "casa_21" );
-var casa_22 = document.getElementById( "casa_22" );
-var casa_23 = document.getElementById( "casa_23" );
-var casa_31 = document.getElementById( "casa_31" );
-var casa_32 = document.getElementById( "casa_32" );
-var casa_33 = document.getElementById( "casa_33" );
-
-var casa_msg = document.getElementById( "menssagem" );
-
-
 var msg = document.createElement( "p" );
-msg.appendChild(document.createTextNode( "Jogada nao permitida!" ));
-//casa_msg.appendChild(msg);
-console.log(casa_msg);
 
+function joga ( casa ) {
+   
+    setMsg("");
 
- function joga ( casa ) {
+    if ( jogadaLegal ( casa ) ) {
+        
+        peca = peca == null || peca.nome == "x" ? pecaFactory( "o" ) : pecaFactory( "x" );
+        casa.appendChild( peca );
 
-    peca = peca == null || peca.nome == "x" ? pecaFactory( "o" ) : pecaFactory( "x" );
-
- 	casa.appendChild(peca);
-
-	if(jogadaLegal(casa)){
-	        casa.innerHTML = peca;
-	        if(vitoria(casa)){
-	           msg.innerHTML = casa.innerHTML + " Ganhou!";
-	        }
-	        trocapeca();
-	}
-	else{casa_msg.appendChild("Jogada nao permitida!") }
+        if ( vitoria ( casa ) ) {
+            setMsg( "Ganhou" );
+        }
+    }
+    else{
+        setMsg( "Jogada não permitida!" );
+    }
 		
 }
 
+var trocaPeca = function ( peca ) { peca == null || peca.nome == "x" ? pecaFactory( "o" ) : pecaFactory( "x" ); }
+
+var jogadaLegal = function ( casa ) { var legal; casa.innerHTML.trim() == ""? legal = true : legal = false; return legal }
+
 var pecaFactory =  function ( peca ) {
 
-    var imgPeca = document.createElement( "img" ); 
+var imgPeca = document.createElement( "img" ); 
    
     if ( peca == "x" ) {
         imgPeca.src = "img/x.jpg"; 
@@ -58,9 +44,11 @@ var pecaFactory =  function ( peca ) {
     return imgPeca;
 }
 
-var trocaPeca = function ( peca ) { peca.nome == "x" ? peca = pecaFactory("o") : peca = pecaFactory("x") }
-
-var jogadaLegal = function ( casa ) { casa.innerHTML.trim() == ""? true : false }
+var setMsg = function ( m ) {
+    msg.innerHTML = "";
+    menssagem.appendChild(msg);
+    msg.appendChild(document.createTextNode(m)); 
+}
 
 var vitoria = function ( casa ) {
 
