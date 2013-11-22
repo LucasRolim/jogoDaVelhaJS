@@ -14,13 +14,25 @@
 	<div class="menu" >
 		<div class="title"> Menu </div>
 		<div class="menuCentro"> 
-			x<br>
-			x<br>
-			x<br>
-			x<br>
-			x<br>
+			
+			Jogador x <br>
+			<input 	type="text" 
+					value="Jogador_x" 
+					maxlength="10" 
+					id="jogador_x" 
+					onclick="this.value='';" 
+					onblur="verificaNome(this)"> <br><br>
+
+			Jogador o <br>
+			<input 	type="text" 
+					value="Jogador_o" 
+					maxlength="10" 
+					id="jogador_o" 
+					onclick="this.value='';" 
+					onblur="verificaNome(this)"> <br><br>
+
 		</div>
-		<div class="menuRodape"> x </div>
+		<div class="menuRodape"> Zerar placar. </div>
 	</div>
 
 		<div class="principal" >
@@ -43,9 +55,12 @@
 
 	<div class="placar" >
 		<div class="title"> Placar </div>
+		<div class="placar1"> 1 </div>
+		<hr size="100" width="1" color="coral"> 
+		<div class="placar2"> 1 </div>
 	</div>
 
-		<script type="text/javascript" src="js/velha.js" ></script>
+		<script type="text/javascript" src="js/velha.js"> </script>
 
 	</body>
 

@@ -15,6 +15,11 @@ img{
 	width:80px; 
 	height: 80px;
 }
+hr{
+	size:100;
+	width:1;
+	color:#0000ff;
+}
 
 .menu {
 	border:1px coral solid;
@@ -27,7 +32,7 @@ img{
 }
 
 .menuCentro {
-	border:1px coral solid;
+	border:0px coral solid;
 	width: 190px;
 	height: 300px;
 	position: relative;
@@ -59,12 +64,33 @@ img{
 .placar {
 	border:1px coral solid;
 	width: 200px;
-	height: 150px;
+	height: 160px;
 	position: absolute;
 	text-align : center;
 	top: 10%;
 	left: 64%;
 	box-shadow: 20px 20px 15px #888888;
+}
+.placar1 {
+	border:1px coral solid;
+	width: 80px;
+	height: 100px;
+	position: absolute;
+	text-align : center;
+	top: 50px;
+	left: 10px;
+
+}
+
+.placar2{
+	border:1px coral solid;
+	width: 80px;
+	height: 100px;
+	position: absolute;
+	text-align : center;
+	top: 50px;
+	left: 108px;
+
 }
 
 .title {

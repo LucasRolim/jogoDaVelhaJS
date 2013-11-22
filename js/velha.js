@@ -3,7 +3,18 @@
 
 var peca ;
 var contador = 0; //variavel que garante que a vitoria só será verificada apos a quarta jogada.
+var vitoria;
 var msg = document.createElement( "p" );
+
+function verificaNome(nome){
+
+    if ( nome.id == "jogador_x" ){
+        nome.value.trim() == "" ? nome.value = "Jogador_x" : nome.value ;
+    }
+    else {
+        nome.value.trim() == "" ? nome.value = "Jogador_o" : nome.value ;
+    }
+}
 
 function joga ( casa ) {
    
@@ -17,8 +28,8 @@ function joga ( casa ) {
 
         if ( contador > 4 ) {
 
-            if ( vitoria ( casa ) ) {
-
+            if ( checaVitoria ( casa ) ) {
+                vitoria = true;
                 setMsg( peca.nome + " ganhou!" );
             }
         }
@@ -29,7 +40,7 @@ function joga ( casa ) {
 		
 }
 
-var trocaPeca = function() {peca == null || peca.nome == "o" ? peca = pecaFactory( "x" ) : peca = pecaFactory( "o" ); return peca; }
+var trocaPeca = function() { peca == null || peca.nome == "o" ? peca = pecaFactory( "x" ) : peca = pecaFactory( "o" ); return peca; }
 
 var jogadaLegal = function( casa ) { var legal; casa.innerHTML.trim() == "" ? legal = true : legal = false; return legal; }
 
@@ -55,7 +66,7 @@ var setMsg = function( m ) {
     msg.appendChild ( document.createTextNode ( m ) ); 
 }
 
-var vitoria = function( casa ) {
+var checaVitoria = function( casa ) {
 
     switch ( casa.id ) {
 
