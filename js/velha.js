@@ -25,7 +25,7 @@ function joga ( casa ) {
 
 var trocaPeca = function() {peca == null || peca.nome == "o" ? peca = pecaFactory( "x" ) : peca = pecaFactory( "o" ); return peca; }
 
-var jogadaLegal = function( casa ) { var legal; casa.innerHTML.trim() == "" ? legal = true : legal = false; return legal }
+var jogadaLegal = function( casa ) { var legal; casa.innerHTML.trim() == "" ? legal = true : legal = false; return legal; }
 
 var pecaFactory =  function( peca ) {
 
