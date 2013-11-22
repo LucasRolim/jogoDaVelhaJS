@@ -16,15 +16,46 @@ img{
 	height: 80px;
 }
 
+.menu {
+	border:1px coral solid;
+	width: 200px;
+	height: 400px;
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	box-shadow: 20px 20px 15px #888888;
+}
+
 .principal {
 	border:1px coral solid;
 	width: 400px;
 	height: 400px;
 	position: absolute;
+	text-align : center;
 	top: 10%;
-	left: 35%;
+	left: 30%;
 	box-shadow: 20px 20px 15px #888888;
+}
 
+.placar {
+	border:1px coral solid;
+	width: 200px;
+	height: 150px;
+	position: absolute;
+	text-align : center;
+	top: 10%;
+	left: 64%;
+	box-shadow: 20px 20px 15px #888888;
+}
+
+.title {
+	border:1px coral solid;
+	width: 196px;
+	height: 20px;
+	position: absolute;
+	text-align : center;
+	top: 1px;
+	left: 1px;
 }
 
 #menssagem {
