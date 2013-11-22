@@ -1,125 +1,142 @@
 
 //variavéis para controle dos elementos da tela.
 
-var img_x = document.createElement("img"); 
-img_x.src="img/x.jpg"; 
-img_x.nome="x";
 
-var img_o = document.createElement("img"); 
-img_o.src="img/o.jpg"; 
-img_o.nome="o";
+//peça é um elemento de imagem
+var peca;
 
-var jogador = img_x;
+//cada 
+var casa_11 = document.getElementById( "casa_11" );
+var casa_12 = document.getElementById( "casa_12" );
+var casa_13 = document.getElementById( "casa_13" );
+var casa_21 = document.getElementById( "casa_21" );
+var casa_22 = document.getElementById( "casa_22" );
+var casa_23 = document.getElementById( "casa_23" );
+var casa_31 = document.getElementById( "casa_31" );
+var casa_32 = document.getElementById( "casa_32" );
+var casa_33 = document.getElementById( "casa_33" );
 
-var valorCasa11 = document.getElementById("casa_11");
-var valorCasa12 = document.getElementById("casa_12");
-var valorCasa13 = document.getElementById("casa_13");
-var valorCasa21 = document.getElementById("casa_21");
-var valorCasa22 = document.getElementById("casa_22");
-var valorCasa23 = document.getElementById("casa_23");
-var valorCasa31 = document.getElementById("casa_31");
-var valorCasa32 = document.getElementById("casa_32");
-var valorCasa33 = document.getElementById("casa_33");
-
-var msg = document.getElementById("menssagem");
+var casa_msg = document.getElementById( "menssagem" );
 
 
- function joga(posicao){
- 	
- 	posicao.appendChild(jogador);
- 	//console.log(posicao.innerHTML);
-	console.log(jogador.nome);
-	trocaJogador();
-	/*if(jogadaLegal(posicao)){
-	        posicao.innerHTML = jogador;
-	        if(vitoria(posicao)){
-	           msg.innerHTML = posicao.innerHTML + " Ganhou!";
+var msg = document.createElement( "p" );
+msg.appendChild(document.createTextNode( "Jogada nao permitida!" ));
+//casa_msg.appendChild(msg);
+console.log(casa_msg);
+
+
+ function joga ( casa ) {
+
+    peca = peca == null || peca.nome == "x" ? pecaFactory( "o" ) : pecaFactory( "x" );
+
+ 	casa.appendChild(peca);
+
+	if(jogadaLegal(casa)){
+	        casa.innerHTML = peca;
+	        if(vitoria(casa)){
+	           msg.innerHTML = casa.innerHTML + " Ganhou!";
 	        }
-	        trocaJogador();
+	        trocapeca();
 	}
-	else{msg.innerHTML="Jogada nao permitida!"}
-		*/
+	else{casa_msg.appendChild("Jogada nao permitida!") }
+		
 }
 
-var trocaJogador = function(){ jogador.nome == "x" ? jogador = img_o : jogador = img_x; return jogador; }
-var jogadaLegal  = function(posicao){var isCool; posicao.innerHTML =="X" || posicao.innerHTML =="O"?  isCool = false : isCool = true; return isCool; }
+var pecaFactory =  function ( peca ) {
 
-var imagemFactory = function(){}
+    var imgPeca = document.createElement( "img" ); 
+   
+    if ( peca == "x" ) {
+        imgPeca.src = "img/x.jpg"; 
+        imgPeca.nome = "x";
+    }
+    else {
+        imgPeca.src = "img/o.jpg"; 
+        imgPeca.nome = "o";
+    }
 
-var vitoria = function(posicao){
-    switch(posicao.id){
+    return imgPeca;
+}
+
+var trocaPeca = function ( peca ) { peca.nome == "x" ? peca = pecaFactory("o") : peca = pecaFactory("x") }
+
+var jogadaLegal = function ( casa ) { casa.innerHTML.trim() == ""? true : false }
+
+var vitoria = function ( casa ) {
+
+    switch( casa.id ) {
        
         case "casa_11" :
-            if( (posicao.innerHTML == valorCasa12.innerHTML && posicao.innerHTML == valorCasa13.innerHTML) || 
-                (posicao.innerHTML == valorCasa21.innerHTML && posicao.innerHTML == valorCasa31.innerHTML) ||
-                (posicao.innerHTML == valorCasa22.innerHTML && posicao.innerHTML == valorCasa33.innerHTML) ){
+            if (( casa.innerHTML == casa_12.innerHTML && casa.innerHTML == casa_13.innerHTML ) || 
+                ( casa.innerHTML == casa_21.innerHTML && casa.innerHTML == casa_31.innerHTML ) ||
+                ( casa.innerHTML == casa_22.innerHTML && casa.innerHTML == casa_33.innerHTML )) {
 
                 return true;
             }
         break;
        
         case "casa_12" :
-          if( (posicao.innerHTML == valorCasa11.innerHTML && posicao.innerHTML == valorCasa13.innerHTML) || 
-              (posicao.innerHTML == valorCasa22.innerHTML && posicao.innerHTML == valorCasa32.innerHTML)){
+          if (( casa.innerHTML == casa_11.innerHTML && casa.innerHTML == casa_13.innerHTML ) || 
+              ( casa.innerHTML == casa_22.innerHTML && casa.innerHTML == casa_32.innerHTML )) {
 
                 return true; 
             }
         break;
        
         case "casa_13" :
-          if( (posicao.innerHTML == valorCasa12.innerHTML && posicao.innerHTML == valorCasa11.innerHTML) || 
-              (posicao.innerHTML == valorCasa23.innerHTML && posicao.innerHTML == valorCasa33.innerHTML) ||
-              (posicao.innerHTML == valorCasa22.innerHTML && posicao.innerHTML == valorCasa31.innerHTML)){
+          if (( casa.innerHTML == casa_12.innerHTML && casa.innerHTML == casa_11.innerHTML ) || 
+              ( casa.innerHTML == casa_23.innerHTML && casa.innerHTML == casa_33.innerHTML ) ||
+              ( casa.innerHTML == casa_22.innerHTML && casa.innerHTML == casa_31.innerHTML )) {
 
                 return true; 
             }
         break;
         
         case "casa_21" :
-           if( (posicao.innerHTML == valorCasa22.innerHTML && posicao.innerHTML == valorCasa23.innerHTML) || 
-               (posicao.innerHTML == valorCasa11.innerHTML && posicao.innerHTML == valorCasa31.innerHTML)){
+           if (( casa.innerHTML == casa_22.innerHTML && casa.innerHTML == casa_23.innerHTML ) || 
+               ( casa.innerHTML == casa_11.innerHTML && casa.innerHTML == casa_31.innerHTML )) {
 
                 return true; 
             }
         break;
        
         case "casa_22" :
-           if( (posicao.innerHTML == valorCasa21.innerHTML && posicao.innerHTML == valorCasa23.innerHTML) || 
-               (posicao.innerHTML == valorCasa12.innerHTML && posicao.innerHTML == valorCasa32.innerHTML)){
+           if (( casa.innerHTML == casa_21.innerHTML && casa.innerHTML == casa_23.innerHTML ) || 
+               ( casa.innerHTML == casa_12.innerHTML && casa.innerHTML == casa_32.innerHTML )) {
 
                 return true;
             }
         break;
        
         case "casa_23" :
-            if( (posicao.innerHTML == valorCasa21.innerHTML && posicao.innerHTML == valorCasa22.innerHTML) || 
-                (posicao.innerHTML == valorCasa13.innerHTML && posicao.innerHTML == valorCasa33.innerHTML)){
+            if (( casa.innerHTML == casa_21.innerHTML && casa.innerHTML == casa_22.innerHTML ) || 
+                ( casa.innerHTML == casa_13.innerHTML && casa.innerHTML == casa_33.innerHTML ) ) {
 
                 return true;
             }
         break;
 
         case "casa_31" :
-           if(  (posicao.innerHTML == valorCasa32.innerHTML && posicao.innerHTML == valorCasa33.innerHTML) || 
-                (posicao.innerHTML == valorCasa11.innerHTML && posicao.innerHTML == valorCasa21.innerHTML) ||
-                (posicao.innerHTML == valorCasa22.innerHTML && posicao.innerHTML == valorCasa13.innerHTML) ){
+            if (( casa.innerHTML == casa_32.innerHTML && casa.innerHTML == casa_33.innerHTML ) || 
+                ( casa.innerHTML == casa_11.innerHTML && casa.innerHTML == casa_21.innerHTML ) ||
+                ( casa.innerHTML == casa_22.innerHTML && casa.innerHTML == casa_13.innerHTML )) {
 
                 return true;
             }
         break;
        
         case "casa_32" :
-            if(  (posicao.innerHTML == valorCasa31.innerHTML && posicao.innerHTML == valorCasa33.innerHTML) || 
-                 (posicao.innerHTML == valorCasa22.innerHTML && posicao.innerHTML == valorCasa12.innerHTML) ){
+            if (( casa.innerHTML == casa_31.innerHTML && casa.innerHTML == casa_33.innerHTML ) || 
+                ( casa.innerHTML == casa_22.innerHTML && casa.innerHTML == casa_12.innerHTML )) {
 
                 return true;
             }
         break;
        
         case "casa_33" :
-            if( (posicao.innerHTML == valorCasa32.innerHTML && posicao.innerHTML == valorCasa31.innerHTML) || 
-                (posicao.innerHTML == valorCasa23.innerHTML && posicao.innerHTML == valorCasa12.innerHTML) ||
-                (posicao.innerHTML == valorCasa22.innerHTML && posicao.innerHTML == valorCasa11.innerHTML) ){
+            if (( casa.innerHTML == casa_32.innerHTML && casa.innerHTML == casa_31.innerHTML ) || 
+                ( casa.innerHTML == casa_23.innerHTML && casa.innerHTML == casa_12.innerHTML ) ||
+                ( casa.innerHTML == casa_22.innerHTML && casa.innerHTML == casa_11.innerHTML )) {
 
                 return true;
                 
