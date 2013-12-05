@@ -20,16 +20,20 @@
 					value="Jogador_x" 
 					maxlength="10" 
 					id="jogador_x" 
-					onclick="this.value='';" 
-					onblur="verificaNome(this)"> <br><br>
+					onclick="this.value=='Jogador_x'? this.value='' : this.value = this.value;" 
+					onblur="this.value==''? this.value='Jogador_x' : this.value = this.value;"
+					onfocus="this.value=='Jogador_x'? this.value='' : this.value = this.value;"
+					onkeyup="setName(this);"> <br><br>
 
 			Jogador o <br>
 			<input 	type="text" 
 					value="Jogador_o" 
 					maxlength="10" 
 					id="jogador_o" 
-					onclick="this.value='';" 
-					onblur="verificaNome(this)"> <br><br>
+					onclick="this.value=='Jogador_o'? this.value='' : this.value = this.value;" 
+					onblur="this.value==''? this.value='Jogador_o' : this.value = this.value;"
+					onfocus="this.value=='Jogador_o'? this.value='' : this.value = this.value;" 
+					onkeyup="setName(this);"> <br><br>
 
 		</div>
 		<div class="menuRodape"> Zerar placar. </div>
@@ -54,10 +58,17 @@
 		</div>
 
 	<div class="placar" >
-		<div class="title"> Placar </div>
+		
+		<div class="titlePlacar"> Placar </div>&nbsp;
+		
+		<div id="nomePlayer1"> </div>
 		<div class="placar1"> 1 </div>
+		
 		<hr size="100" width="1" color="coral"> 
-		<div class="placar2"> 1 </div>
+
+		<div id="nomePlayer2">  </div>
+		<div class="placar2"> 2 </div>
+
 	</div>
 
 		<script type="text/javascript" src="js/velha.js"> </script>

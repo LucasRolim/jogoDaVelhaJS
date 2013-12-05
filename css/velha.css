@@ -63,8 +63,8 @@ hr{
 
 .placar {
 	border:1px coral solid;
-	width: 200px;
-	height: 160px;
+	width: 300px;
+	height: 190px;
 	position: absolute;
 	text-align : center;
 	top: 10%;
@@ -73,24 +73,50 @@ hr{
 }
 .placar1 {
 	border:1px coral solid;
-	width: 80px;
+	width: 130px;
 	height: 100px;
 	position: absolute;
 	text-align : center;
-	top: 50px;
+	top: 70px;
 	left: 10px;
-
+}
+#nomePlayer1 {
+	border:1px coral solid;
+	width: 130px;
+	height: 40px;
+	position: absolute;
+	text-align : center;
+	top: 25px;
+	left: 10px;
+}
+#nomePlayer2 {
+	border:1px coral solid;
+	width: 130px;
+	height: 40px;
+	position: absolute;
+	text-align : center;
+	top: 25px;
+	left: 160px;
 }
 
 .placar2{
 	border:1px coral solid;
-	width: 80px;
+	width: 130px;
 	height: 100px;
 	position: absolute;
 	text-align : center;
-	top: 50px;
-	left: 108px;
+	top: 70px;
+	left: 160px;
+}
 
+.titlePlacar {
+	border:1px coral solid;
+	width: 296px;
+	height: 20px;
+	position: relative;
+	text-align : center;
+	top: 1px;
+	left: 1px;
 }
 
 .title {

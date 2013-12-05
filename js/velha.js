@@ -5,14 +5,24 @@ var peca ;
 var contador = 0; //variavel que garante que a vitoria só será verificada apos a quarta jogada.
 var vitoria;
 var msg = document.createElement( "p" );
+var nomeP1 = document.createElement( "p" );
+var nomeP2 = document.createElement( "p" );
 
-function verificaNome(nome){
 
-    if ( nome.id == "jogador_x" ){
-        nome.value.trim() == "" ? nome.value = "Jogador_x" : nome.value ;
+function setName(nome){
+
+    console.log(nome.id);
+    msg.innerHTML = "";
+    
+    if(nome.id == "jogador_x"){
+        nomeP1.innerHTML = "";
+        nomePlayer1.appendChild ( nomeP1 );
+        nomeP1.appendChild ( document.createTextNode ( nome.value ) ); 
     }
-    else {
-        nome.value.trim() == "" ? nome.value = "Jogador_o" : nome.value ;
+    else{
+        nomeP2.innerHTML = "";
+        nomePlayer2.appendChild ( nomeP2 );
+        nomeP2.appendChild ( document.createTextNode ( nome.value ) ); 
     }
 }
 
