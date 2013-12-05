@@ -3,7 +3,7 @@
 var tabuleiroBloqueado = true; 
 var peca ;
 var contador = 0; //variavel que garante que a vitoria só será verificada apos a quarta jogada.
-var vitoria;
+var vitoria = false;
 var msg = document.createElement( "p" );
 var nomeP1 = document.createElement( "p" );
 var nomeP2 = document.createElement( "p" );
@@ -26,7 +26,11 @@ function setName(nome){
     }
 }
 
-function iniciar(){ tabuleiroBloqueado = false; }
+function iniciar(){ 
+    limparTabuleiro(); 
+    setMsg("");
+    tabuleiroBloqueado = false; 
+}
 
 function joga ( casa ) {
    
@@ -52,6 +56,10 @@ function joga ( casa ) {
                     tabuleiroBloqueado = true;
                     setMsg( peca.nome + " ganhou!" );
                 }
+                if (contador == "9" && vitoria == false){
+                    setMsg( "I deu velha!" );
+                    tabuleiroBloqueado = true;
+                }
             }
         }
         else {
@@ -68,7 +76,9 @@ var jogadaLegal = function( casa ) { var legal; casa.innerHTML.trim() == "" ? le
 
 var limparTabuleiro = function(){
 
-
+    casa_11.innerHTML="";casa_12.innerHTML="";casa_13.innerHTML="";
+    casa_21.innerHTML="";casa_22.innerHTML="";casa_23.innerHTML="";
+    casa_31.innerHTML="";casa_32.innerHTML="";casa_33.innerHTML="";
 }
 
 var pecaFactory =  function( peca ) {
