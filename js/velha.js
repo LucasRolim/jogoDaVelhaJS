@@ -1,6 +1,6 @@
 
 //variavéis para controle dos elementos da tela.
-
+var tabuleiroBloqueado = true; 
 var peca ;
 var contador = 0; //variavel que garante que a vitoria só será verificada apos a quarta jogada.
 var vitoria;
@@ -14,45 +14,62 @@ function setName(nome){
     console.log(nome.id);
     msg.innerHTML = "";
     
-    if(nome.id == "jogador_x"){
+    if ( nome.id == "jogador_x"){
         nomeP1.innerHTML = "";
         nomePlayer1.appendChild ( nomeP1 );
         nomeP1.appendChild ( document.createTextNode ( nome.value ) ); 
     }
-    else{
+    else {
         nomeP2.innerHTML = "";
         nomePlayer2.appendChild ( nomeP2 );
         nomeP2.appendChild ( document.createTextNode ( nome.value ) ); 
     }
 }
 
+function iniciar(){ tabuleiroBloqueado = false; }
+
 function joga ( casa ) {
    
     setMsg("");
 
-    if ( jogadaLegal( casa ) ) {
-      
-        trocaPeca();
-        casa.appendChild( peca );
-        contador++;
+    if ( tabuleiroBloqueado ) {
 
-        if ( contador > 4 ) {
+        setMsg( "Por favor inicie a partida!" );
 
-            if ( checaVitoria ( casa ) ) {
-                vitoria = true;
-                setMsg( peca.nome + " ganhou!" );
-            }
-        }
     }
     else {
-        setMsg( "Jogada não permitida!" );
-    }
+
+        if ( jogadaLegal( casa ) ) {
+          
+            trocaPeca();
+            casa.appendChild( peca );
+            contador++;
+
+            if ( contador > 4 ) {
+
+                if ( checaVitoria ( casa ) ) {
+                    vitoria = true;
+                    tabuleiroBloqueado = true;
+                    setMsg( peca.nome + " ganhou!" );
+                }
+            }
+        }
+        else {
+            setMsg( "Jogada não permitida!" );
+        }
+    } 
 		
 }
+
 
 var trocaPeca = function() { peca == null || peca.nome == "o" ? peca = pecaFactory( "x" ) : peca = pecaFactory( "o" ); return peca; }
 
 var jogadaLegal = function( casa ) { var legal; casa.innerHTML.trim() == "" ? legal = true : legal = false; return legal; }
+
+var limparTabuleiro = function(){
+
+
+}
 
 var pecaFactory =  function( peca ) {
 
